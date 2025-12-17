@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
-import { Nunito, Baloo_2 } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const baloo = Baloo_2({
-  variable: "--font-baloo",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "Fit Friends - Get Kids Moving!",
-  description: "The fun fitness app that turns exercise into an adventure! Games, challenges, and rewards that get kids excited about staying active.",
+  title: "Fit Friends - Level Up Your Fitness",
+  description: "The fitness app that makes working out actually fun. Challenges, rewards, and real results for teens who want to get stronger.",
 };
 
 export default function RootLayout({
@@ -26,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${nunito.variable} ${baloo.variable} antialiased overflow-x-hidden`}>
+      <body className={`${inter.variable} antialiased overflow-x-hidden`}>
         {children}
       </body>
     </html>

@@ -2,55 +2,101 @@
 
 import { useState } from "react";
 
-// Fun character emojis for the app
-const characters = ["🦸", "🦹", "🧙", "🧚", "🦊", "🐼", "🦁", "🐯"];
-
-function StarBurst({ className = "" }: { className?: string }) {
+function PhoneMockup() {
   return (
-    <svg viewBox="0 0 100 100" className={className}>
-      <polygon
-        points="50,0 61,35 98,35 68,57 79,91 50,70 21,91 32,57 2,35 39,35"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
+    <div className="relative">
+      {/* Glow effect behind phone */}
+      <div className="absolute inset-0 bg-gradient-to-r from-neon-purple via-hot-pink to-electric-blue blur-3xl opacity-30 scale-110"></div>
+      
+      {/* Phone frame */}
+      <div className="relative bg-black rounded-[3rem] p-2 shadow-2xl border border-gray-800">
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-full z-10"></div>
+        <div 
+          className="rounded-[2.5rem] overflow-hidden w-64 h-[500px] md:w-72 md:h-[540px]"
+          style={{ background: 'linear-gradient(180deg, #1E293B 0%, #0F172A 100%)' }}
+        >
+          {/* App Screen Content */}
+          <div className="p-5 h-full flex flex-col">
+            <div className="text-center pt-6">
+              <p className="text-gray-400 text-xs uppercase tracking-wider">Today&apos;s Challenge</p>
+              <h3 className="text-white font-display text-xl font-bold mt-1">HIIT Power Session</h3>
+            </div>
 
-function WavyDivider({ flip = false }: { flip?: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 1440 120"
-      className={`w-full h-16 md:h-24 ${flip ? "rotate-180" : ""}`}
-      preserveAspectRatio="none"
-    >
-      <path
-        d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,90 1440,60 L1440,120 L0,120 Z"
-        fill="currentColor"
-      />
-    </svg>
+            <div className="flex-1 flex items-center justify-center">
+              <div className="relative">
+                <div className="w-32 h-32 rounded-full border-4 border-neon-purple flex items-center justify-center animate-pulse-glow">
+                  <span className="text-5xl">⚡</span>
+                </div>
+                <div className="absolute -top-2 -right-2 bg-cyber-mint text-black text-xs font-bold px-2 py-1 rounded-full">
+                  +250 XP
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="glass-card rounded-xl p-4">
+                <div className="flex justify-between items-center text-white">
+                  <span className="text-sm text-gray-400">Weekly Streak</span>
+                  <span className="font-bold text-cyber-mint">🔥 12 Days</span>
+                </div>
+                <div className="mt-2 bg-gray-700 rounded-full h-2">
+                  <div className="bg-gradient-to-r from-electric-blue to-neon-purple h-2 rounded-full w-4/5"></div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2">
+                <div className="glass-card rounded-lg p-3 text-center">
+                  <p className="text-cyber-mint font-bold">2.4k</p>
+                  <p className="text-gray-400 text-xs">Calories</p>
+                </div>
+                <div className="glass-card rounded-lg p-3 text-center">
+                  <p className="text-electric-blue font-bold">47</p>
+                  <p className="text-gray-400 text-xs">Workouts</p>
+                </div>
+                <div className="glass-card rounded-lg p-3 text-center">
+                  <p className="text-hot-pink font-bold">#12</p>
+                  <p className="text-gray-400 text-xs">Rank</p>
+                </div>
+              </div>
+
+              <button 
+                className="w-full font-bold py-3.5 rounded-xl text-base transition-all hover:scale-[1.02]"
+                style={{ background: 'linear-gradient(135deg, #8B5CF6, #EC4899)' }}
+              >
+                Start Workout →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
 function FeatureCard({
-  emoji,
+  icon,
   title,
   description,
-  color,
+  gradient,
   delay,
 }: {
-  emoji: string;
+  icon: string;
   title: string;
   description: string;
-  color: string;
+  gradient: string;
   delay: string;
 }) {
   return (
     <div
-      className={`opacity-0 animate-slide-up ${delay} bg-white rounded-3xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-4 ${color}`}
+      className={`opacity-0 animate-slide-up ${delay} glass-card rounded-2xl p-6 hover:border-neon-purple/50 transition-all duration-300 hover:-translate-y-1 group`}
     >
-      <div className="text-5xl md:text-6xl mb-4 animate-bounce-slow">{emoji}</div>
-      <h3 className="font-display text-xl md:text-2xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-600 text-sm md:text-base">{description}</p>
+      <div 
+        className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4 ${gradient}`}
+      >
+        {icon}
+      </div>
+      <h3 className="text-lg font-bold mb-2 text-white group-hover:text-neon-purple transition-colors">{title}</h3>
+      <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
     </div>
   );
 }
@@ -58,87 +104,26 @@ function FeatureCard({
 function TestimonialCard({
   quote,
   name,
-  role,
+  handle,
   avatar,
 }: {
   quote: string;
   name: string;
-  role: string;
+  handle: string;
   avatar: string;
 }) {
   return (
-    <div className="bg-white/90 backdrop-blur rounded-3xl p-6 shadow-lg border-2 border-grape-fizz/20">
-      <div className="text-4xl mb-4">{avatar}</div>
-      <p className="text-gray-700 italic mb-4">&ldquo;{quote}&rdquo;</p>
-      <div>
-        <p className="font-bold text-grape-fizz">{name}</p>
-        <p className="text-sm text-gray-500">{role}</p>
-      </div>
-    </div>
-  );
-}
-
-function PhoneMockup() {
-  return (
-    <div className="relative">
-      {/* Floating elements around phone */}
-      <div className="absolute -top-8 -left-8 text-5xl animate-float stagger-1">⭐</div>
-      <div className="absolute -top-4 -right-12 text-4xl animate-float stagger-2">🏆</div>
-      <div className="absolute top-1/2 -left-16 text-4xl animate-float stagger-3">💪</div>
-      <div className="absolute bottom-8 -right-10 text-5xl animate-float stagger-4">🎮</div>
-      <div className="absolute -bottom-4 -left-8 text-4xl animate-float stagger-5">🎯</div>
-
-      {/* Phone frame */}
-      <div className="relative bg-gray-900 rounded-[3rem] p-3 shadow-2xl animate-wiggle">
-        <div className="absolute top-6 left-1/2 -translate-x-1/2 w-24 h-6 bg-gray-900 rounded-full z-10"></div>
-        <div 
-          className="rounded-[2.5rem] overflow-hidden w-64 h-[500px] md:w-72 md:h-[560px]"
-          style={{ background: 'linear-gradient(to bottom right, #A855F7, #EC4899, #FF6B6B)' }}
-        >
-          {/* App Screen Content */}
-          <div className="p-6 h-full flex flex-col">
-            <div className="text-center pt-8">
-              <p className="text-white/80 text-sm">Today&apos;s Adventure</p>
-              <h3 className="text-white font-display text-2xl font-bold">Fit Friends!</h3>
-            </div>
-
-            <div className="flex-1 flex items-center justify-center">
-              <div className="text-8xl animate-bounce-slow">🦁</div>
-            </div>
-
-            <div className="space-y-3">
-              <div className="bg-white/20 backdrop-blur rounded-2xl p-4">
-                <div className="flex justify-between items-center text-white">
-                  <span>⚡ Energy Points</span>
-                  <span className="font-bold">2,450</span>
-                </div>
-                <div className="mt-2 bg-white/30 rounded-full h-3">
-                  <div className="bg-sunshine h-3 rounded-full w-3/4"></div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 gap-2">
-                <div className="bg-white/20 backdrop-blur rounded-xl p-3 text-center">
-                  <div className="text-2xl">🏃</div>
-                  <p className="text-white text-xs mt-1">1.2km</p>
-                </div>
-                <div className="bg-white/20 backdrop-blur rounded-xl p-3 text-center">
-                  <div className="text-2xl">⏱️</div>
-                  <p className="text-white text-xs mt-1">15 min</p>
-                </div>
-                <div className="bg-white/20 backdrop-blur rounded-xl p-3 text-center">
-                  <div className="text-2xl">🔥</div>
-                  <p className="text-white text-xs mt-1">120 cal</p>
-                </div>
-              </div>
-
-              <button className="w-full bg-sunshine text-gray-900 font-bold py-4 rounded-2xl text-lg shadow-lg hover:scale-105 transition-transform">
-                Start Adventure! 🚀
-              </button>
-            </div>
-          </div>
+    <div className="glass-card rounded-2xl p-6">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-neon-purple to-hot-pink flex items-center justify-center text-lg">
+          {avatar}
+        </div>
+        <div>
+          <p className="font-semibold text-white">{name}</p>
+          <p className="text-sm text-gray-500">{handle}</p>
         </div>
       </div>
+      <p className="text-gray-300 text-sm leading-relaxed">&ldquo;{quote}&rdquo;</p>
     </div>
   );
 }
@@ -153,87 +138,80 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-dark-slate">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b-4 border-sunshine">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-slate/80 backdrop-blur-lg border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-3xl">💪</span>
-            <span className="font-display text-2xl font-bold bg-gradient-to-r from-coral-pop via-bubblegum to-grape-fizz bg-clip-text text-transparent">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-neon-purple to-hot-pink flex items-center justify-center">
+              <span className="text-white font-bold text-sm">FF</span>
+            </div>
+            <span className="text-xl font-bold text-white">
               Fit Friends
             </span>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="font-semibold hover:text-coral-pop transition-colors">Features</a>
-            <a href="#how-it-works" className="font-semibold hover:text-coral-pop transition-colors">How It Works</a>
-            <a href="#testimonials" className="font-semibold hover:text-coral-pop transition-colors">Reviews</a>
+            <a href="#features" className="text-gray-400 hover:text-white transition-colors text-sm">Features</a>
+            <a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors text-sm">How It Works</a>
+            <a href="#testimonials" className="text-gray-400 hover:text-white transition-colors text-sm">Reviews</a>
           </div>
           <button 
-            className="text-white font-bold px-6 py-2 rounded-full hover:shadow-lg hover:scale-105 transition-all"
-            style={{ background: 'linear-gradient(to right, #FF6B6B, #EC4899)' }}
+            className="text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:opacity-90 transition-opacity"
+            style={{ background: 'linear-gradient(135deg, #8B5CF6, #EC4899)' }}
           >
-            Download Free! 🎉
+            Get the App
           </button>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen pt-24 overflow-hidden">
-        {/* Background decorations */}
-        <div className="absolute inset-0 pattern-confetti opacity-30"></div>
-        <div className="absolute top-20 left-10 w-32 h-32 bg-sunshine/40 blob animate-float"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-coral-pop/40 blob animate-float stagger-2"></div>
-        <div className="absolute bottom-40 left-1/4 w-20 h-20 bg-ocean-blue/40 blob animate-float stagger-3"></div>
-        <StarBurst className="absolute top-32 right-1/4 w-12 h-12 text-sunshine animate-spin-slow" />
-        <StarBurst className="absolute bottom-48 left-16 w-8 h-8 text-bubblegum animate-spin-slow" />
-
+      <section className="relative min-h-screen pt-24 overflow-hidden mesh-gradient">
         <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left content */}
             <div className="text-center lg:text-left">
-              <div className="inline-block bg-lime-burst/20 text-lime-burst font-bold px-4 py-2 rounded-full text-sm mb-6 animate-slide-up">
-                🎯 #1 Kids Fitness App of 2024
+              <div className="inline-block bg-neon-purple/20 text-neon-purple font-semibold px-4 py-2 rounded-full text-sm mb-6 opacity-0 animate-slide-up border border-neon-purple/30">
+                🏆 #1 Fitness App for Teens
               </div>
 
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 opacity-0 animate-slide-up stagger-1">
-                Get Your Kids{" "}
-                <span className="animate-rainbow">Moving</span>
-                {" "}&amp; Grooving!
-          </h1>
+              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 opacity-0 animate-slide-up stagger-1">
+                Level Up Your{" "}
+                <span className="gradient-text">Fitness Game</span>
+              </h1>
 
-              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0 opacity-0 animate-slide-up stagger-2">
-                Turn screen time into <strong>active time</strong>! Fit Friends transforms exercise into epic adventures with games, challenges, and rewards that kids actually love. 🎮✨
+              <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0 opacity-0 animate-slide-up stagger-2">
+                Forget boring workouts. Fit Friends turns fitness into a game with challenges, leaderboards, and rewards that actually make you want to train.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start opacity-0 animate-slide-up stagger-3">
                 <button 
-                  className="text-white font-bold text-lg px-8 py-4 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center justify-center gap-2"
-                  style={{ background: 'linear-gradient(to right, #FF6B6B, #FB923C)' }}
+                  className="text-white font-semibold text-base px-8 py-4 rounded-xl hover:opacity-90 transition-all hover:scale-[1.02] flex items-center justify-center gap-2"
+                  style={{ background: 'linear-gradient(135deg, #8B5CF6, #EC4899)' }}
                 >
                   <span>Download Free</span>
-                  <span className="text-2xl">🚀</span>
+                  <span>→</span>
                 </button>
-                <button className="bg-white border-4 border-grape-fizz text-grape-fizz font-bold text-lg px-8 py-4 rounded-full hover:bg-grape-fizz hover:text-white transition-all flex items-center justify-center gap-2">
+                <button className="bg-gray-800 border border-gray-700 text-white font-semibold text-base px-8 py-4 rounded-xl hover:bg-gray-700 transition-all flex items-center justify-center gap-2">
                   <span>Watch Demo</span>
-                  <span className="text-2xl">▶️</span>
+                  <span>▶</span>
                 </button>
               </div>
 
               <div className="mt-10 flex items-center gap-6 justify-center lg:justify-start opacity-0 animate-slide-up stagger-4">
-                <div className="flex -space-x-3">
-                  {["🧒", "👧", "👦", "👧"].map((emoji, i) => (
+                <div className="flex -space-x-2">
+                  {["😎", "💪", "🔥", "⚡"].map((emoji, i) => (
                     <div
                       key={i}
-                      className="w-12 h-12 bg-white rounded-full border-4 border-white shadow-lg flex items-center justify-center text-2xl"
+                      className="w-10 h-10 bg-gray-800 rounded-full border-2 border-dark-slate flex items-center justify-center text-lg"
                     >
                       {emoji}
                     </div>
                   ))}
                 </div>
                 <div className="text-left">
-                  <div className="flex text-sunshine text-xl">★★★★★</div>
-                  <p className="text-sm text-gray-600">
-                    <strong>50,000+</strong> happy families!
+                  <div className="flex text-yellow-400 text-sm">★★★★★</div>
+                  <p className="text-sm text-gray-400">
+                    <strong className="text-white">50K+</strong> active users
                   </p>
                 </div>
               </div>
@@ -245,49 +223,48 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        <WavyDivider />
       </section>
 
       {/* Features Section */}
-      <section id="features" className="bg-ocean-blue text-white py-20">
-        <div className="max-w-7xl mx-auto px-4">
+      <section id="features" className="py-20 bg-dark-slate relative">
+        <div className="absolute inset-0 mesh-gradient opacity-50"></div>
+        <div className="relative max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              Why Kids Love Fit Friends! 💖
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-white">
+              Why Fit Friends Hits Different
             </h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              We&apos;ve cracked the code on making fitness fun. Here&apos;s how we do it!
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Built by athletes, for athletes. Everything you need to crush your fitness goals.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <FeatureCard
-              emoji="🎮"
-              title="Adventure Games"
-              description="Run from dragons, dance with robots, and explore magical worlds - all while exercising!"
-              color="border-coral-pop"
+              icon="⚔️"
+              title="Daily Challenges"
+              description="New workouts drop every day. Complete them to earn XP and climb the ranks."
+              gradient="bg-gradient-to-br from-electric-blue to-neon-purple"
               delay="stagger-1"
             />
             <FeatureCard
-              emoji="🏆"
-              title="Epic Rewards"
-              description="Earn coins, unlock characters, and collect badges. Every workout is a win!"
-              color="border-sunshine"
+              icon="🏆"
+              title="Leaderboards"
+              description="Compete with friends or go global. See where you stack up against the best."
+              gradient="bg-gradient-to-br from-neon-purple to-hot-pink"
               delay="stagger-2"
             />
             <FeatureCard
-              emoji="👨‍👩‍👧‍👦"
-              title="Family Fun"
-              description="Multiplayer challenges let the whole family join in. Get fit together!"
-              color="border-lime-burst"
+              icon="👥"
+              title="Squad Goals"
+              description="Create or join squads. Train together, compete together, win together."
+              gradient="bg-gradient-to-br from-hot-pink to-sunset-orange"
               delay="stagger-3"
             />
             <FeatureCard
-              emoji="📊"
-              title="Parent Dashboard"
-              description="Track progress, set goals, and celebrate achievements with your kids."
-              color="border-grape-fizz"
+              icon="📊"
+              title="Progress Tracking"
+              description="Real stats, real progress. Track everything from PRs to recovery time."
+              gradient="bg-gradient-to-br from-cyber-mint to-electric-blue"
               delay="stagger-4"
             />
           </div>
@@ -295,54 +272,44 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-20 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 pattern-dots opacity-10"></div>
-
+      <section id="how-it-works" className="py-20 bg-card relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              So Easy, Kids Set It Up! 🧸
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-white">
+              Start in 3 Minutes
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Three simple steps to transform your child&apos;s activity levels
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              No complicated setup. Just download, create your profile, and start training.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                step: "1",
-                emoji: "📱",
-                title: "Download & Create",
-                description: "Grab the free app and let your kid create their awesome avatar character!",
-                color: "bg-coral-pop",
+                step: "01",
+                title: "Download & Sign Up",
+                description: "Get the app and create your profile in under a minute. No credit card needed.",
+                color: "text-electric-blue",
               },
               {
-                step: "2",
-                emoji: "🎯",
-                title: "Pick Adventures",
-                description: "Choose from 100+ exciting activities - from ninja training to space missions!",
-                color: "bg-grape-fizz",
+                step: "02",
+                title: "Set Your Goals",
+                description: "Tell us what you want to achieve. We'll build your personalized training plan.",
+                color: "text-neon-purple",
               },
               {
-                step: "3",
-                emoji: "🌟",
-                title: "Play & Grow",
-                description: "Watch them get active, earn rewards, and build healthy habits that last!",
-                color: "bg-ocean-blue",
+                step: "03",
+                title: "Start Crushing It",
+                description: "Complete challenges, earn rewards, and watch yourself level up every week.",
+                color: "text-hot-pink",
               },
             ].map((item, index) => (
               <div key={index} className="relative text-center">
-                <div className={`${item.color} w-20 h-20 rounded-full mx-auto flex items-center justify-center text-white font-display text-3xl font-bold shadow-xl mb-6`}>
+                <div className={`font-display text-6xl font-bold mb-4 ${item.color} opacity-20`}>
                   {item.step}
                 </div>
-                <div className="text-5xl mb-4">{item.emoji}</div>
-                <h3 className="font-display text-2xl font-bold mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
-
-                {index < 2 && (
-                  <div className="hidden md:block absolute top-10 left-[60%] w-[80%] border-t-4 border-dashed border-sunshine"></div>
-                )}
+                <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
+                <p className="text-gray-400">{item.description}</p>
               </div>
             ))}
           </div>
@@ -351,21 +318,21 @@ export default function Home() {
 
       {/* Stats Section */}
       <section 
-        className="py-16 text-white"
-        style={{ background: 'linear-gradient(to right, #EC4899, #A855F7, #38BDF8)' }}
+        className="py-16 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F97316 100%)' }}
       >
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { number: "50K+", label: "Active Families", emoji: "👨‍👩‍👧‍👦" },
-              { number: "1M+", label: "Adventures Completed", emoji: "🎮" },
-              { number: "4.9★", label: "App Store Rating", emoji: "⭐" },
-              { number: "30min", label: "Avg Daily Activity", emoji: "⏱️" },
+              { number: "50K+", label: "Active Users" },
+              { number: "1.2M", label: "Workouts Completed" },
+              { number: "4.9", label: "App Store Rating" },
+              { number: "89%", label: "Hit Their Goals" },
             ].map((stat, index) => (
               <div key={index} className="p-4">
-                <div className="text-4xl mb-2">{stat.emoji}</div>
-                <div className="font-display text-4xl md:text-5xl font-bold drop-shadow-lg">{stat.number}</div>
-                <div className="text-white/90 font-semibold">{stat.label}</div>
+                <div className="font-display text-4xl md:text-5xl font-bold text-white">{stat.number}</div>
+                <div className="text-white/80 mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -373,171 +340,149 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="py-20 bg-[#FFF0F5] relative overflow-hidden">
-        <div className="absolute inset-0 pattern-confetti opacity-20"></div>
-
+      <section id="testimonials" className="py-20 bg-dark-slate relative">
+        <div className="absolute inset-0 mesh-gradient opacity-30"></div>
         <div className="relative max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              Parents &amp; Kids Love Us! 💕
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-white">
+              What Users Are Saying
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Don&apos;t just take our word for it - hear from our Fit Friends families!
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Real reviews from real athletes crushing it with Fit Friends.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             <TestimonialCard
-              avatar="👩"
-              quote="My kids used to fight over screen time. Now they fight over who gets to do the next Fit Friends challenge! Best purchase ever."
-              name="Sarah M."
-              role="Mom of 3"
+              avatar="J"
+              quote="Finally an app that doesn't feel like it was made for my mom. The challenges actually push me and the leaderboard keeps me coming back."
+              name="Jake M."
+              handle="@jakefitness"
             />
             <TestimonialCard
-              avatar="👨"
-              quote="As a pediatrician, I recommend Fit Friends to all my patients. It's the perfect blend of fun and healthy activity."
-              name="Dr. James Chen"
-              role="Pediatrician"
+              avatar="S"
+              quote="My squad and I have been using this for 3 months. We've all hit PRs we never thought possible. The competition is 🔥"
+              name="Sarah K."
+              handle="@sarahstrong"
             />
             <TestimonialCard
-              avatar="👧"
-              quote="I love being a ninja princess and doing all the cool moves! I've earned 47 badges already!!"
-              name="Emma, Age 8"
-              role="Fit Friends Champion 🏆"
+              avatar="M"
+              quote="I used to skip workouts all the time. Now I'm on a 47-day streak because I don't want to lose my rank. Genius app design."
+              name="Marcus T."
+              handle="@marcusgains"
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Character Parade */}
-      <section className="py-16 bg-sunshine overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h3 className="font-display text-3xl font-bold mb-8">
-            Collect All The Characters! 🎭
-          </h3>
-          <div className="flex justify-center gap-4 md:gap-8 flex-wrap">
-            {characters.map((char, index) => (
-              <div
-                key={index}
-                className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center text-4xl md:text-5xl hover:scale-110 transition-transform cursor-pointer animate-float"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                {char}
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section 
-        className="py-20 text-white relative overflow-hidden"
-        style={{ background: 'linear-gradient(to bottom right, #A855F7, #EC4899, #FF6B6B)' }}
+        className="py-20 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}
       >
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-40 h-40 bg-white/10 blob animate-float"></div>
-          <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 blob animate-float stagger-2"></div>
-          <StarBurst className="absolute top-20 right-1/4 w-16 h-16 text-white/20 animate-spin-slow" />
-        </div>
+        <div className="absolute inset-0 mesh-gradient"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon-purple/20 rounded-full blur-3xl"></div>
 
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <h2 className="font-display text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">
-            Ready to Get Your Kids Moving? 🎉
+          <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 text-white">
+            Ready to Level Up?
           </h2>
-          <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto">
-            Join 50,000+ families who&apos;ve made fitness fun! Start your free adventure today.
+          <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+            Join 50,000+ users who stopped making excuses and started making gains. Download free today.
           </p>
 
           {!submitted ? (
             <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="flex-1 px-6 py-4 rounded-full text-gray-900 font-semibold focus:outline-none focus:ring-4 focus:ring-sunshine"
+                  className="flex-1 px-5 py-4 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-neon-purple transition-colors"
                   required
                 />
                 <button
                   type="submit"
-                  className="bg-sunshine text-gray-900 font-bold px-8 py-4 rounded-full hover:bg-white transition-colors whitespace-nowrap"
+                  className="font-semibold px-8 py-4 rounded-xl text-white hover:opacity-90 transition-opacity whitespace-nowrap"
+                  style={{ background: 'linear-gradient(135deg, #8B5CF6, #EC4899)' }}
                 >
-                  Get Started Free! 🚀
+                  Get Started →
                 </button>
               </div>
-              <p className="text-white/70 text-sm mt-4">
-                Free forever for families. No credit card required.
+              <p className="text-gray-500 text-sm mt-4">
+                Free forever. No credit card required.
               </p>
             </form>
           ) : (
-            <div className="bg-white/20 backdrop-blur rounded-3xl p-8 max-w-md mx-auto">
-              <div className="text-6xl mb-4">🎊</div>
-              <h3 className="font-display text-2xl font-bold mb-2">Woohoo! You&apos;re In!</h3>
-              <p>Check your email for download instructions. Adventure awaits!</p>
+            <div className="glass-card rounded-2xl p-8 max-w-md mx-auto">
+              <div className="text-5xl mb-4">🎉</div>
+              <h3 className="text-2xl font-bold mb-2 text-white">You&apos;re In!</h3>
+              <p className="text-gray-400">Check your email for download links. Let&apos;s go!</p>
             </div>
           )}
 
-          <div className="mt-12 flex flex-wrap justify-center gap-6">
-            <div className="flex items-center gap-2 bg-white/20 backdrop-blur px-6 py-3 rounded-full">
-              <span className="text-2xl">🍎</span>
-              <span className="font-semibold">Download on iOS</span>
+          <div className="mt-12 flex flex-wrap justify-center gap-4">
+            <div className="flex items-center gap-2 bg-gray-800/50 backdrop-blur px-5 py-3 rounded-xl border border-gray-700">
+              <span className="text-xl">🍎</span>
+              <span className="text-sm text-gray-300">Download on iOS</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/20 backdrop-blur px-6 py-3 rounded-full">
-              <span className="text-2xl">🤖</span>
-              <span className="font-semibold">Get it on Android</span>
+            <div className="flex items-center gap-2 bg-gray-800/50 backdrop-blur px-5 py-3 rounded-xl border border-gray-700">
+              <span className="text-xl">▶️</span>
+              <span className="text-sm text-gray-300">Get it on Android</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-black py-12 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-3xl">💪</span>
-                <span className="font-display text-2xl font-bold">Fit Friends</span>
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-neon-purple to-hot-pink flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">FF</span>
+                </div>
+                <span className="text-lg font-bold text-white">Fit Friends</span>
               </div>
-              <p className="text-gray-400">
-                Making kids fitness fun since 2024. Get moving, stay healthy, have fun!
+              <p className="text-gray-500 text-sm">
+                The fitness app for teens who want real results, not boring routines.
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Product</h4>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-semibold mb-4 text-white">Product</h4>
+              <ul className="space-y-2 text-sm text-gray-500">
                 <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Download</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+              <h4 className="font-semibold mb-4 text-white">Company</h4>
+              <ul className="space-y-2 text-sm text-gray-500">
+                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Press</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Connect</h4>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-semibold mb-4 text-white">Connect</h4>
+              <ul className="space-y-2 text-sm text-gray-500">
                 <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">TikTok</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">YouTube</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Discord</a></li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm">
-              © 2024 Fit Friends. All rights reserved. Made with 💖 for active kids everywhere.
+            <p className="text-gray-500 text-sm">
+              © 2024 Fit Friends. All rights reserved.
             </p>
-            <div className="flex gap-6 text-sm text-gray-400">
+            <div className="flex gap-6 text-sm text-gray-500">
               <a href="#" className="hover:text-white transition-colors">Privacy</a>
               <a href="#" className="hover:text-white transition-colors">Terms</a>
-              <a href="#" className="hover:text-white transition-colors">COPPA Compliant</a>
             </div>
           </div>
         </div>
