@@ -99,7 +99,7 @@ function PhoneMockup() {
           <div className="p-6 h-full flex flex-col">
             <div className="text-center pt-8">
               <p className="text-white/80 text-sm">Today&apos;s Adventure</p>
-              <h3 className="text-white font-display text-2xl font-bold">Jungle Jump!</h3>
+              <h3 className="text-white font-display text-2xl font-bold">Fit Friends!</h3>
             </div>
 
             <div className="flex-1 flex items-center justify-center">
@@ -158,9 +158,9 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b-4 border-sunshine">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-3xl">🦘</span>
+            <span className="text-3xl">💪</span>
             <span className="font-display text-2xl font-bold bg-gradient-to-r from-coral-pop via-bubblegum to-grape-fizz bg-clip-text text-transparent">
-              JumpSquad
+              Fit Friends
             </span>
           </div>
           <div className="hidden md:flex items-center gap-8">
@@ -199,10 +199,10 @@ export default function Home() {
                 Get Your Kids{" "}
                 <span className="animate-rainbow">Moving</span>
                 {" "}&amp; Grooving!
-              </h1>
+          </h1>
 
               <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0 opacity-0 animate-slide-up stagger-2">
-                Turn screen time into <strong>active time</strong>! JumpSquad transforms exercise into epic adventures with games, challenges, and rewards that kids actually love. 🎮✨
+                Turn screen time into <strong>active time</strong>! Fit Friends transforms exercise into epic adventures with games, challenges, and rewards that kids actually love. 🎮✨
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start opacity-0 animate-slide-up stagger-3">
@@ -254,7 +254,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              Why Kids Love JumpSquad! 💖
+              Why Kids Love Fit Friends! 💖
             </h2>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
               We&apos;ve cracked the code on making fitness fun. Here&apos;s how we do it!
@@ -382,20 +382,20 @@ export default function Home() {
               Parents &amp; Kids Love Us! 💕
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Don&apos;t just take our word for it - hear from our JumpSquad families!
+              Don&apos;t just take our word for it - hear from our Fit Friends families!
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             <TestimonialCard
               avatar="👩"
-              quote="My kids used to fight over screen time. Now they fight over who gets to do the next JumpSquad challenge! Best purchase ever."
+              quote="My kids used to fight over screen time. Now they fight over who gets to do the next Fit Friends challenge! Best purchase ever."
               name="Sarah M."
               role="Mom of 3"
             />
             <TestimonialCard
               avatar="👨"
-              quote="As a pediatrician, I recommend JumpSquad to all my patients. It's the perfect blend of fun and healthy activity."
+              quote="As a pediatrician, I recommend Fit Friends to all my patients. It's the perfect blend of fun and healthy activity."
               name="Dr. James Chen"
               role="Pediatrician"
             />
@@ -403,7 +403,7 @@ export default function Home() {
               avatar="👧"
               quote="I love being a ninja princess and doing all the cool moves! I've earned 47 badges already!!"
               name="Emma, Age 8"
-              role="JumpSquad Champion 🏆"
+              role="Fit Friends Champion 🏆"
             />
           </div>
         </div>
@@ -497,8 +497,8 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-3xl">🦘</span>
-                <span className="font-display text-2xl font-bold">JumpSquad</span>
+                <span className="text-3xl">💪</span>
+                <span className="font-display text-2xl font-bold">Fit Friends</span>
               </div>
               <p className="text-gray-400">
                 Making kids fitness fun since 2024. Get moving, stay healthy, have fun!
@@ -532,7 +532,7 @@ export default function Home() {
 
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © 2024 JumpSquad. All rights reserved. Made with 💖 for active kids everywhere.
+              © 2024 Fit Friends. All rights reserved. Made with 💖 for active kids everywhere.
             </p>
             <div className="flex gap-6 text-sm text-gray-400">
               <a href="#" className="hover:text-white transition-colors">Privacy</a>

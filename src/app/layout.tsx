@@ -15,7 +15,7 @@ const baloo = Baloo_2({
 });
 
 export const metadata: Metadata = {
-  title: "JumpSquad - Get Kids Moving!",
+  title: "Fit Friends - Get Kids Moving!",
   description: "The fun fitness app that turns exercise into an adventure! Games, challenges, and rewards that get kids excited about staying active.",
 };
 
