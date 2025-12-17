@@ -1,6 +1,80 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+
+function VideoModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      videoRef.current?.play();
+    } else {
+      document.body.style.overflow = 'unset';
+      if (videoRef.current) {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  // Close on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    if (isOpen) {
+      window.addEventListener('keydown', handleEscape);
+      return () => window.removeEventListener('keydown', handleEscape);
+    }
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div 
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/90 backdrop-blur-sm animate-fade-in" />
+      
+      {/* Modal content */}
+      <div 
+        className="relative w-full max-w-4xl animate-scale-in"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium"
+        >
+          <span>Close</span>
+          <span className="text-xl">✕</span>
+        </button>
+
+        {/* Video container with glow effect */}
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-neon-purple via-hot-pink to-electric-blue blur-2xl opacity-40 scale-105" />
+          <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl border border-gray-800">
+            <video
+              ref={videoRef}
+              src="/demo-video.mp4"
+              controls
+              autoPlay
+              className="w-full aspect-video"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function PhoneMockup() {
   return (
@@ -131,6 +205,7 @@ function TestimonialCard({
 export default function Home() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -139,6 +214,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-dark-slate">
+      <VideoModal isOpen={isVideoOpen} onClose={() => setIsVideoOpen(false)} />
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-slate/80 backdrop-blur-lg border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -189,8 +265,11 @@ export default function Home() {
                   <span>Download Free</span>
                   <span>→</span>
                 </button>
-                <button className="bg-gray-800 border border-gray-700 text-white font-semibold text-base px-8 py-4 rounded-xl hover:bg-gray-700 transition-all flex items-center justify-center gap-2">
-                  <span>Watch Demo</span>
+                <button 
+                  onClick={() => setIsVideoOpen(true)}
+                  className="bg-gray-800 border border-gray-700 text-white font-semibold text-base px-8 py-4 rounded-xl hover:bg-gray-700 transition-all flex items-center justify-center gap-2"
+                >
+                  <span>Watch Video</span>
                   <span>▶</span>
                 </button>
               </div>
