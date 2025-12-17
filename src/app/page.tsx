@@ -143,9 +143,7 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-slate/80 backdrop-blur-lg border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-neon-purple to-hot-pink flex items-center justify-center">
-              <span className="text-white font-bold text-sm">FF</span>
-            </div>
+            <img src="/logo.png" alt="Fit Friends" className="h-8 w-auto" />
             <span className="text-xl font-bold text-white">
               Fit Friends
             </span>
@@ -441,9 +439,7 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-neon-purple to-hot-pink flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">FF</span>
-                </div>
+                <img src="/logo.png" alt="Fit Friends" className="h-8 w-auto" />
                 <span className="text-lg font-bold text-white">Fit Friends</span>
               </div>
               <p className="text-gray-500 text-sm">
