@@ -165,8 +165,8 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen pt-24 overflow-hidden mesh-gradient">
-        <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
+      <section className="relative pt-24 pb-16 overflow-hidden mesh-gradient">
+        <div className="relative max-w-7xl mx-auto px-4 py-12 md:py-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left content */}
             <div className="text-center lg:text-left">
