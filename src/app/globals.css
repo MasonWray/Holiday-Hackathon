@@ -1,26 +1,170 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Vibrant Kid-Friendly Palette */
+  --sunshine: #FFE135;
+  --coral-pop: #FF6B6B;
+  --ocean-blue: #4ECDC4;
+  --grape-fizz: #A855F7;
+  --lime-burst: #84CC16;
+  --sky-bright: #38BDF8;
+  --bubblegum: #EC4899;
+  --orange-zest: #FB923C;
+  
+  /* Base */
+  --background: #FFF9E6;
+  --foreground: #1E1B4B;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-nunito), system-ui, sans-serif;
 }
+
+/* Fun Animations */
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(2deg); }
+  66% { transform: translateY(-5px) rotate(-2deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 225, 53, 0.6)); }
+  50% { filter: drop-shadow(0 0 40px rgba(255, 225, 53, 0.9)); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rainbow-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-rainbow {
+  background: linear-gradient(90deg, var(--coral-pop), var(--orange-zest), var(--sunshine), var(--lime-burst), var(--ocean-blue), var(--grape-fizz), var(--bubblegum));
+  background-size: 300% 300%;
+  animation: rainbow-shift 4s ease infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Staggered animations */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Fun blob shapes */
+.blob {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+/* Pattern overlay */
+.pattern-dots {
+  background-image: radial-gradient(circle, var(--grape-fizz) 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.pattern-confetti {
+  background-image: 
+    radial-gradient(circle at 10% 20%, var(--coral-pop) 4px, transparent 4px),
+    radial-gradient(circle at 80% 30%, var(--ocean-blue) 3px, transparent 3px),
+    radial-gradient(circle at 40% 80%, var(--grape-fizz) 5px, transparent 5px),
+    radial-gradient(circle at 90% 70%, var(--sunshine) 4px, transparent 4px),
+    radial-gradient(circle at 20% 60%, var(--lime-burst) 3px, transparent 3px);
+  background-size: 200px 200px;
+}
+
+/* Font family utility */
+.font-display {
+  font-family: var(--font-baloo), system-ui, cursive;
+}
+
+/* Custom color utilities using CSS variables */
+.bg-sunshine { background-color: var(--sunshine); }
+.bg-coral-pop { background-color: var(--coral-pop); }
+.bg-ocean-blue { background-color: var(--ocean-blue); }
+.bg-grape-fizz { background-color: var(--grape-fizz); }
+.bg-lime-burst { background-color: var(--lime-burst); }
+.bg-sky-bright { background-color: var(--sky-bright); }
+.bg-bubblegum { background-color: var(--bubblegum); }
+.bg-orange-zest { background-color: var(--orange-zest); }
+
+.text-sunshine { color: var(--sunshine); }
+.text-coral-pop { color: var(--coral-pop); }
+.text-ocean-blue { color: var(--ocean-blue); }
+.text-grape-fizz { color: var(--grape-fizz); }
+.text-lime-burst { color: var(--lime-burst); }
+.text-sky-bright { color: var(--sky-bright); }
+.text-bubblegum { color: var(--bubblegum); }
+.text-orange-zest { color: var(--orange-zest); }
+
+.border-sunshine { border-color: var(--sunshine); }
+.border-coral-pop { border-color: var(--coral-pop); }
+.border-ocean-blue { border-color: var(--ocean-blue); }
+.border-grape-fizz { border-color: var(--grape-fizz); }
+.border-lime-burst { border-color: var(--lime-burst); }
+.border-sky-bright { border-color: var(--sky-bright); }
+.border-bubblegum { border-color: var(--bubblegum); }
+.border-orange-zest { border-color: var(--orange-zest); }
+
+.from-coral-pop { --tw-gradient-from: var(--coral-pop); }
+.from-bubblegum { --tw-gradient-from: var(--bubblegum); }
+.from-grape-fizz { --tw-gradient-from: var(--grape-fizz); }
+.from-ocean-blue { --tw-gradient-from: var(--ocean-blue); }
+
+.via-bubblegum { --tw-gradient-via: var(--bubblegum); }
+.via-grape-fizz { --tw-gradient-via: var(--grape-fizz); }
+
+.to-orange-zest { --tw-gradient-to: var(--orange-zest); }
+.to-bubblegum { --tw-gradient-to: var(--bubblegum); }
+.to-grape-fizz { --tw-gradient-to: var(--grape-fizz); }
+.to-coral-pop { --tw-gradient-to: var(--coral-pop); }
+.to-sky-bright { --tw-gradient-to: var(--sky-bright); }
