@@ -206,6 +206,19 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [investorsOpen, setInvestorsOpen] = useState(false);
+  const investorsRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (investorsRef.current && !investorsRef.current.contains(e.target as Node)) {
+        setInvestorsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -228,6 +241,53 @@ export default function Home() {
             <a href="#features" className="text-gray-400 hover:text-white transition-colors text-sm">Features</a>
             <a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors text-sm">How It Works</a>
             <a href="#testimonials" className="text-gray-400 hover:text-white transition-colors text-sm">Reviews</a>
+            <div className="relative" ref={investorsRef}>
+              <button 
+                onClick={() => setInvestorsOpen(!investorsOpen)}
+                className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1"
+              >
+                Investors
+                <svg 
+                  className={`w-4 h-4 transition-transform ${investorsOpen ? 'rotate-180' : ''}`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {investorsOpen && (
+                <div className="absolute top-full right-0 mt-2 w-48 bg-gray-900 border border-gray-700 rounded-xl shadow-xl overflow-hidden z-50">
+                  <a 
+                    href="/investor-report.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+                    onClick={() => setInvestorsOpen(false)}
+                  >
+                    Investor Report
+                  </a>
+                  <a 
+                    href="/pitch-deck.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+                    onClick={() => setInvestorsOpen(false)}
+                  >
+                    Pitch Deck
+                  </a>
+                  <a 
+                    href="/summary.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+                    onClick={() => setInvestorsOpen(false)}
+                  >
+                    Summary
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
           <button 
             className="text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:opacity-90 transition-opacity"
